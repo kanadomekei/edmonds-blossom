@@ -1,6 +1,7 @@
 from max_matching import Match
 import networkx as nx
 import matplotlib.pyplot as plt
+import time
 
 def visualize_matching(edges, num_nodes, matching):
     # グラフの作成
@@ -70,13 +71,22 @@ if __name__ == "__main__":
         (3, 9), (9, 3),
     ]
     
+    # 計測開始
+    start_time = time.time()
+    
     # 最大マッチングを計算
     matching = find_maximum_matching(edges, num_nodes)
+    
+    # 計測終了
+    end_time = time.time()
+    execution_time = end_time - start_time
     
     # 結果の表示
     print("Maximum Matching:")
     for edge in matching:
         print(f"Node {edge[0]} - Node {edge[1]}")
+    
+    print(f"\n実行時間: {execution_time:.6f} 秒")
     
     # マッチングされていない頂点の数を表示
     match = Match.from_edges(num_nodes, edges)
